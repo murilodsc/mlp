@@ -69,6 +69,11 @@ A MLP é construída com `tensorflow.keras` e possui a seguinte estrutura:
 
 > *Esses gráficos ajudam a visualizar a estabilidade do aprendizado e verificar se há overfitting.*
 
+### Resultado após execução de 150 épocas no main.py:
+
+![Resultado main.py](resultado.png)
+
+> *Esse print exibe o resultado depois de executar o arquivo main.py.*
 ---
 
 ## 🎯 Exemplo de Predições

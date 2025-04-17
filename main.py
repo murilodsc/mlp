@@ -61,10 +61,6 @@ model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 # Treinando o modelo
 model.fit(X_train, y_train, epochs=150, batch_size=32, validation_split=0.2)
 
-# Avaliando o modelo
-loss, mae = model.evaluate(X_test, y_test)
-print(f'Erro médio absoluto (MAE) no teste: {mae:.2f}')
-
 # Histórico de treinamento
 history = model.fit(X_train, y_train, epochs=150, batch_size=32, validation_split=0.2)
 
@@ -93,3 +89,7 @@ plt.tight_layout()
 plt.savefig('docs/loss_vs_epochs.png')
 
 os.makedirs('docs', exist_ok=True)
+
+# Avaliando o modelo
+loss, mae = model.evaluate(X_test, y_test)
+print(f'Erro médio absoluto (MAE) no teste: {mae:.2f}')
