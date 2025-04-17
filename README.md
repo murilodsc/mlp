@@ -1,55 +1,108 @@
 ### README
 
-# Implementação da rede neural MLP para recomendação de filmes
+# 🧠 Implementação da Rede Neural MLP para Previsão de Avaliações de Filmes
 
-Este projeto utiliza Python para realizar análises e treinamentos de modelos de Machine Learning. Ele implementa uma Rede Neural Perceptron Multicamadas (MLP) para prever a avaliação média de filmes com base em características específicas.
+Este projeto utiliza Python e a biblioteca `TensorFlow` para treinar uma rede neural do tipo **MLP (Multilayer Perceptron)** que prevê a **avaliação média (`vote_average`)** de filmes com base em características extraídas do dataset `movies_metadata.csv`.
 
-## Detalhes do Algoritmo
+---
 
-A rede neural foi projetada para realizar uma tarefa de regressão, utilizando as seguintes colunas do dataset `movies_metadata.csv` como entrada:
+## 📊 Dados Utilizados
 
-- **popularity**: Popularidade do filme.
-- **runtime**: Duração do filme (em minutos).
-- **revenue**: Receita gerada pelo filme.
-- **vote_average**: Avaliação média do filme (usada como variável alvo).
+A rede utiliza as seguintes colunas como entrada:
 
-### Pré-processamento dos Dados
+- `popularity`: Popularidade do filme
+- `runtime`: Duração do filme (em minutos)
+- `revenue`: Receita gerada pelo filme
+- `release_year`: Ano de lançamento do filme
+- `original_language`: Língua original, codificada com one-hot encoding
 
-1. **Conversão de Dados**: As colunas são convertidas para valores numéricos, substituindo valores inválidos por `NaN`.
-2. **Remoção de Valores Ausentes**: Linhas com valores ausentes são removidas.
-3. **Normalização**: As colunas de entrada (`popularity`, `runtime`, `revenue`) são normalizadas utilizando `StandardScaler` para melhorar o desempenho do modelo.
-4. **Divisão dos Dados**: Os dados são divididos em conjuntos de treino (80%) e teste (20%).
+A variável alvo é:
+- `vote_average`: Nota média atribuída pelos usuários
 
-### Estrutura da Rede Neural
+---
 
-A rede neural foi implementada utilizando a biblioteca `tensorflow.keras` com a seguinte arquitetura:
+## 🧹 Pré-processamento dos Dados
 
-- **Camada de Entrada**: 3 neurônios (uma para cada feature: `popularity`, `runtime`, `revenue`).
-- **Camada Oculta 1**: 64 neurônios com função de ativação ReLU.
-- **Camada Oculta 2**: 32 neurônios com função de ativação ReLU.
-- **Camada de Saída**: 1 neurônio para prever a avaliação média (`vote_average`), sem função de ativação (regressão).
+1. Conversão para tipos numéricos (`pd.to_numeric`)
+2. Remoção de linhas com valores ausentes ou receita = 0
+3. Extração do ano da data de lançamento
+4. Codificação one-hot da coluna `original_language`
+5. Normalização dos dados com `MinMaxScaler`
+6. Divisão em treino (80%) e teste (20%)
 
-### Treinamento
+---
 
-- **Função de Perda**: Mean Squared Error (MSE).
-- **Otimizador**: Adam.
-- **Métricas**: Mean Absolute Error (MAE).
-- **Épocas**: 10.
-- **Tamanho do Batch**: 32.
-- **Validação**: 20% dos dados de treino são usados para validação durante o treinamento.
+## 🧠 Arquitetura da Rede Neural
 
-### Avaliação
+A MLP é construída com `tensorflow.keras` e possui a seguinte estrutura:
 
-O modelo é avaliado no conjunto de teste utilizando o erro médio absoluto (MAE) como métrica principal.
+```
+Input:  X (com N features, incluindo dummies de linguagem)
+↓
+Dense(128, activation='relu', kernel_regularizer=l2(0.001))
+↓
+Dropout(0.3)
+↓
+Dense(64, activation='relu', kernel_regularizer=l2(0.001))
+↓
+Dense(32, activation='relu', kernel_regularizer=l2(0.001))
+↓
+Dense(16, activation='relu', kernel_regularizer=l2(0.001))
+↓
+Dense(1)  → Saída de regressão (nota prevista)
+```
 
-## Como executar o projeto
+---
+
+## ⚙️ Treinamento
+
+- **Função de perda**: Mean Squared Error (MSE)
+- **Otimizador**: Adam
+- **Métrica monitorada**: Mean Absolute Error (MAE)
+- **Épocas**: 150
+- **Validação**: 20% dos dados de treino
+- **Batch size**: 32
+
+---
+
+## 📈 Gráficos de Treinamento
+
+### Erro Médio Absoluto (MAE) durante o treinamento:
+
+![MAE vs Epochs](docs/mae_vs_epochs.png)
+> *Gráfico gerado com os dados de `model.fit()`*
+
+### Perda (Loss - MSE) durante o treinamento:
+
+![Loss vs Epochs](docs/loss_vs_epochs.png)
+
+> *Esses gráficos ajudam a visualizar a estabilidade do aprendizado e verificar se há overfitting.*
+
+---
+
+## 🎯 Exemplo de Predições
+
+Aqui estão exemplos reais de predições feitas pela rede treinada:
+
+| Filme                          | Nota Real | Nota Prevista |
+|-------------------------------|-----------|---------------|
+| Toy Story                     | 7.7       | 7.3           |
+| Jumanji                       | 6.9       | 6.8           |
+| Grumpier Old Men              | 6.5       | 6.1           |
+| Father of the Bride Part II   | 5.7       | 5.5           |
+
+> *As predições são razoavelmente próximas das avaliações reais, com um erro médio absoluto (MAE) em torno de **1.10***.
+
+---
+
+## 🚀 Como Executar o Projeto
 
 Siga os passos abaixo para configurar e executar o projeto:
 
 ### 1. Clonar o repositório
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DO_REPOSITORIO>
+git clone https://github.com/murilodsc/mlp.git
+cd mlp
 ```
 
 ### 2. Criar e ativar um ambiente virtual
