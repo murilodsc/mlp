@@ -40,7 +40,7 @@ model.add(Dense(1))                                         # saída (regressão
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 
 # Treinando o modelo
-model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.2)
+model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
 
 # Avaliando o modelo
 loss, mae = model.evaluate(X_test, y_test)
