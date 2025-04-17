@@ -6,6 +6,18 @@ Este projeto utiliza Python e a biblioteca `TensorFlow` para treinar uma rede ne
 
 ---
 
+## 👥 Integrantes do Grupo
+
+| Nome                            | RA      |
+|---------------------------------|---------|
+| Erick Boneti Novaes             | F344EB0 |
+| Gabriel Alves Portella Tavares  | N357266 |
+| Maria Luiza Alves Dominicali    | T296DC0 |
+| Murilo dos Santos Cabral        | G77EJJ4 |
+| Pedro Henrique Gomes Figueiredo | G845DJ1 |
+
+---
+
 ## 📊 Dados Utilizados
 
 A rede utiliza as seguintes colunas como entrada:
