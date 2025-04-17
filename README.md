@@ -36,21 +36,12 @@ A variável alvo é:
 
 A MLP é construída com `tensorflow.keras` e possui a seguinte estrutura:
 
-```
-Input:  X (com N features, incluindo dummies de linguagem)
-↓
-Dense(128, activation='relu', kernel_regularizer=l2(0.001))
-↓
-Dropout(0.3)
-↓
-Dense(64, activation='relu', kernel_regularizer=l2(0.001))
-↓
-Dense(32, activation='relu', kernel_regularizer=l2(0.001))
-↓
-Dense(16, activation='relu', kernel_regularizer=l2(0.001))
-↓
-Dense(1)  → Saída de regressão (nota prevista)
-```
+- **Define a forma da entrada**: Input:  X (com N features, incluindo dummies de linguagem)
+- **Primeira camada oculta**: Dense(128, activation='relu', kernel_regularizer=l2(0.001))
+- **Segunda camada oculta**: Dense(64, activation='relu', kernel_regularizer=l2(0.001))
+- **Terceira camada oculta**: Dense(32, activation='relu', kernel_regularizer=l2(0.001))
+- **Quarta camada oculta**: Dense(16, activation='relu', kernel_regularizer=l2(0.001))
+- **Saída de regressão (nota prevista)**: Dense(1)
 
 ---
 
