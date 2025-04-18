@@ -1,6 +1,6 @@
 ### README
 
-# 🧠 Implementação da Rede Neural MLP para Previsão de Avaliações de Filmes 
+# 🧠 Implementação da Rede Neural MLP para Previsão de Avaliações de Filmes
 
 Este projeto utiliza Python e a biblioteca `TensorFlow` para treinar uma rede neural do tipo **MLP (Multilayer Perceptron)** que prevê a **avaliação média (`vote_average`)** de filmes com base em características extraídas do dataset `movies_metadata.csv`.
 
