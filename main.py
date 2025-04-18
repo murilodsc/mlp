@@ -6,6 +6,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Input
 from tensorflow.keras.regularizers import l2
+from tensorflow.keras.layers import Dropout
 import matplotlib.pyplot as plt
 import os
 
@@ -45,7 +46,6 @@ X_scaled = scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 
 # Criando o modelo MLP
-from tensorflow.keras.layers import Dropout
 model = Sequential()
 model.add(Input(shape=(X_train.shape[1],)))     # define a forma da entrada
 model.add(Dense(128, activation='relu', kernel_regularizer=l2(0.001)))        # camada oculta 1
